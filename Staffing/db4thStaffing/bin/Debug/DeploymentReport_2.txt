@@ -1,0 +1,27 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a compilar
+       Ninguno
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles problemas de datos
+       El tipo de la columna CreatedBy de la tabla [dbo].[Requests] es actualmente  NCHAR (10) NULL pero se está cambiando a 
+         UNIQUEIDENTIFIER NULL. Puede que se pierdan datos.
+       El tipo de la columna ModifiedBy de la tabla [dbo].[Requests] es actualmente  NCHAR (10) NULL pero se está cambiando a 
+         UNIQUEIDENTIFIER NULL. Puede que se pierdan datos.
+
+** Acciones del usuario
+     Modificar
+       [dbo].[Requests] (Tabla)
+     Crear
+       [dbo].[PositionTypes] (Tabla)
+       [dbo].[RequestTypes] (Tabla)
+       [dbo].[FK_Requests_ToPositionTypes] (Clave externa)
+       [dbo].[FK_Requests_ToRequestType] (Clave externa)
+
+** Acciones de compatibilidad
+
+El tipo de la columna CreatedBy de la tabla [dbo].[Requests] es actualmente  NCHAR (10) NULL pero se está cambiando a  UNIQUEIDENTIFIER NULL. Puede que se pierdan datos.
+El tipo de la columna ModifiedBy de la tabla [dbo].[Requests] es actualmente  NCHAR (10) NULL pero se está cambiando a  UNIQUEIDENTIFIER NULL. Puede que se pierdan datos.
+

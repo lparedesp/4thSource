@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FourthSource.Staffing.Data.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="ClientSince" Type="date" />
+    <Property Name="Logo" Type="image" />
+    <Property Name="Created" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" />
+    <Property Name="LastModified" Type="datetime2" Precision="7" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" />
+    <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Other" Type="nvarchar" MaxLength="50" />
+    <Property Name="Company" Type="int" />
+    <Property Name="Created" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" />
+    <Property Name="LastModified" Type="datetime2" Precision="7" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" />
+    <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="PositionTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PositionType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RequestCertifications">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Request" Type="int" Nullable="false" />
+    <Property Name="Certification" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IssuedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Technology" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Requests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="RequestNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Date" Type="date" />
+    <Property Name="RequestType" Type="int" />
+    <Property Name="DateNeeded" Type="date" />
+    <Property Name="CompanyNeeded" Type="int" />
+    <Property Name="ContactName" Type="int" />
+    <Property Name="PositionType" Type="int" />
+    <Property Name="Lenght" Type="int" />
+    <Property Name="ResourceType" Type="int" />
+    <Property Name="Position" Type="nvarchar" MaxLength="100" />
+    <Property Name="YearsExp" Type="smallint" />
+    <Property Name="Travel" Type="int" />
+    <Property Name="AddtionalDetails" Type="nvarchar" MaxLength="500" />
+    <Property Name="InternalComments" Type="nvarchar" MaxLength="500" />
+    <Property Name="EnglishLevel" Type="nchar" MaxLength="1" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Created" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" />
+    <Property Name="LastModified" Type="datetime2" Precision="7" />
+    <Property Name="ModifiedBy" Type="uniqueidentifier" />
+    <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="RequestTechnologies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Technology" Type="nvarchar" MaxLength="50" />
+    <Property Name="Requiered" Type="bit" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Months" Type="int" />
+    <Property Name="Request" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RequestTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ResourceType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK_Contacts_Companies">
+    <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+    <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contacts">
+        <PropertyRef Name="Company" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestCertifications_ToRequest">
+    <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+    <End Role="RequestCertifications" Type="Self.RequestCertifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requests">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RequestCertifications">
+        <PropertyRef Name="Request" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToCompanies">
+    <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="CompanyNeeded" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToPositionTypes">
+    <End Role="PositionTypes" Type="Self.PositionTypes" Multiplicity="0..1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PositionTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="PositionType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToRequestType">
+    <End Role="RequestTypes" Type="Self.RequestTypes" Multiplicity="0..1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="RequestType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToResourceType">
+    <End Role="ResourceType" Type="Self.ResourceType" Multiplicity="0..1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResourceType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="ResourceType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToStatus">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestTechnologies_ToRequest">
+    <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+    <End Role="RequestTechnologies" Type="Self.RequestTechnologies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requests">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RequestTechnologies">
+        <PropertyRef Name="Request" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FourthSourceStaffingDataModelStoreContainer">
+    <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PositionTypes" EntityType="Self.PositionTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestCertifications" EntityType="Self.RequestCertifications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestTechnologies" EntityType="Self.RequestTechnologies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestTypes" EntityType="Self.RequestTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResourceType" EntityType="Self.ResourceType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Contacts_Companies" Association="Self.FK_Contacts_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Contacts" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestCertifications_ToRequest" Association="Self.FK_RequestCertifications_ToRequest">
+      <End Role="Requests" EntitySet="Requests" />
+      <End Role="RequestCertifications" EntitySet="RequestCertifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToCompanies" Association="Self.FK_Requests_ToCompanies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToPositionTypes" Association="Self.FK_Requests_ToPositionTypes">
+      <End Role="PositionTypes" EntitySet="PositionTypes" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToRequestType" Association="Self.FK_Requests_ToRequestType">
+      <End Role="RequestTypes" EntitySet="RequestTypes" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToResourceType" Association="Self.FK_Requests_ToResourceType">
+      <End Role="ResourceType" EntitySet="ResourceType" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToStatus" Association="Self.FK_Requests_ToStatus">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestTechnologies_ToRequest" Association="Self.FK_RequestTechnologies_ToRequest">
+      <End Role="Requests" EntitySet="Requests" />
+      <End Role="RequestTechnologies" EntitySet="RequestTechnologies" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

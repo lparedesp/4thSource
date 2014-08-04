@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FourthSource.Staffing.Data.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="db4thStaffingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Companies" EntityType="FourthSource.Staffing.Data.Model.Company" />
+    <EntitySet Name="Contacts" EntityType="FourthSource.Staffing.Data.Model.Contact" />
+    <EntitySet Name="PositionTypes" EntityType="FourthSource.Staffing.Data.Model.PositionType" />
+    <EntitySet Name="RequestCertifications" EntityType="FourthSource.Staffing.Data.Model.RequestCertification" />
+    <EntitySet Name="Requests" EntityType="FourthSource.Staffing.Data.Model.Request" />
+    <EntitySet Name="RequestTechnologies" EntityType="FourthSource.Staffing.Data.Model.RequestTechnology" />
+    <EntitySet Name="RequestTypes" EntityType="FourthSource.Staffing.Data.Model.RequestType" />
+    <EntitySet Name="ResourceTypes" EntityType="FourthSource.Staffing.Data.Model.ResourceType" />
+    <EntitySet Name="Status" EntityType="FourthSource.Staffing.Data.Model.Status" />
+    <AssociationSet Name="FK_Contacts_Companies" Association="FourthSource.Staffing.Data.Model.FK_Contacts_Companies">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToCompanies" Association="FourthSource.Staffing.Data.Model.FK_Requests_ToCompanies">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToPositionTypes" Association="FourthSource.Staffing.Data.Model.FK_Requests_ToPositionTypes">
+      <End Role="PositionType" EntitySet="PositionTypes" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestCertifications_ToRequest" Association="FourthSource.Staffing.Data.Model.FK_RequestCertifications_ToRequest">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="RequestCertification" EntitySet="RequestCertifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToRequestType" Association="FourthSource.Staffing.Data.Model.FK_Requests_ToRequestType">
+      <End Role="RequestType" EntitySet="RequestTypes" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToResourceType" Association="FourthSource.Staffing.Data.Model.FK_Requests_ToResourceType">
+      <End Role="ResourceType" EntitySet="ResourceTypes" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_ToStatus" Association="FourthSource.Staffing.Data.Model.FK_Requests_ToStatus">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestTechnologies_ToRequest" Association="FourthSource.Staffing.Data.Model.FK_RequestTechnologies_ToRequest">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="RequestTechnology" EntitySet="RequestTechnologies" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ClientSince" Type="DateTime" Precision="0" />
+    <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Created" Type="DateTime" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" />
+    <Property Name="LastModified" Type="DateTime" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" />
+    <Property Name="Version" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Contacts" Relationship="FourthSource.Staffing.Data.Model.FK_Contacts_Companies" FromRole="Company" ToRole="Contact" />
+    <NavigationProperty Name="Requests" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToCompanies" FromRole="Company" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Other" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Company" Type="Int32" />
+    <Property Name="Created" Type="DateTime" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" />
+    <Property Name="LastModified" Type="DateTime" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" />
+    <Property Name="Version" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Company1" Relationship="FourthSource.Staffing.Data.Model.FK_Contacts_Companies" FromRole="Contact" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="PositionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PositionType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Requests" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToPositionTypes" FromRole="PositionType" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="RequestCertification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Request" Type="Int32" Nullable="false" />
+    <Property Name="Certification" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IssuedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Technology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Request1" Relationship="FourthSource.Staffing.Data.Model.FK_RequestCertifications_ToRequest" FromRole="RequestCertification" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RequestNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="RequestType" Type="Int32" />
+    <Property Name="DateNeeded" Type="DateTime" Precision="0" />
+    <Property Name="CompanyNeeded" Type="Int32" />
+    <Property Name="ContactName" Type="Int32" />
+    <Property Name="PositionType" Type="Int32" />
+    <Property Name="Lenght" Type="Int32" />
+    <Property Name="ResourceType" Type="Int32" />
+    <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="YearsExp" Type="Int16" />
+    <Property Name="Travel" Type="Int32" />
+    <Property Name="AddtionalDetails" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="InternalComments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="EnglishLevel" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="Created" Type="DateTime" Precision="7" />
+    <Property Name="CreatedBy" Type="Guid" />
+    <Property Name="LastModified" Type="DateTime" Precision="7" />
+    <Property Name="ModifiedBy" Type="Guid" />
+    <Property Name="Version" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Company" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToCompanies" FromRole="Request" ToRole="Company" />
+    <NavigationProperty Name="PositionType1" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToPositionTypes" FromRole="Request" ToRole="PositionType" />
+    <NavigationProperty Name="RequestCertifications" Relationship="FourthSource.Staffing.Data.Model.FK_RequestCertifications_ToRequest" FromRole="Request" ToRole="RequestCertification" />
+    <NavigationProperty Name="RequestType1" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToRequestType" FromRole="Request" ToRole="RequestType" />
+    <NavigationProperty Name="ResourceType1" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToResourceType" FromRole="Request" ToRole="ResourceType" />
+    <NavigationProperty Name="Status1" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToStatus" FromRole="Request" ToRole="Status" />
+    <NavigationProperty Name="RequestTechnologies" Relationship="FourthSource.Staffing.Data.Model.FK_RequestTechnologies_ToRequest" FromRole="Request" ToRole="RequestTechnology" />
+  </EntityType>
+  <EntityType Name="RequestTechnology">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Technology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Requiered" Type="Boolean" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Months" Type="Int32" />
+    <Property Name="Request" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Request1" Relationship="FourthSource.Staffing.Data.Model.FK_RequestTechnologies_ToRequest" FromRole="RequestTechnology" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="RequestType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Requests" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToRequestType" FromRole="RequestType" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="ResourceType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Requests" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToResourceType" FromRole="ResourceType" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Requests" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToStatus" FromRole="Status" ToRole="Request" />
+  </EntityType>
+  <Association Name="FK_Contacts_Companies">
+    <End Type="FourthSource.Staffing.Data.Model.Company" Role="Company" Multiplicity="0..1" />
+    <End Type="FourthSource.Staffing.Data.Model.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="Company" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToCompanies">
+    <End Type="FourthSource.Staffing.Data.Model.Company" Role="Company" Multiplicity="0..1" />
+    <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="CompanyNeeded" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToPositionTypes">
+    <End Type="FourthSource.Staffing.Data.Model.PositionType" Role="PositionType" Multiplicity="0..1" />
+    <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PositionType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="PositionType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestCertifications_ToRequest">
+    <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="1" />
+    <End Type="FourthSource.Staffing.Data.Model.RequestCertification" Role="RequestCertification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RequestCertification">
+        <PropertyRef Name="Request" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToRequestType">
+    <End Type="FourthSource.Staffing.Data.Model.RequestType" Role="RequestType" Multiplicity="0..1" />
+    <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="RequestType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToResourceType">
+    <End Type="FourthSource.Staffing.Data.Model.ResourceType" Role="ResourceType" Multiplicity="0..1" />
+    <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResourceType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="ResourceType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_ToStatus">
+    <End Type="FourthSource.Staffing.Data.Model.Status" Role="Status" Multiplicity="0..1" />
+    <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestTechnologies_ToRequest">
+    <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="1" />
+    <End Type="FourthSource.Staffing.Data.Model.RequestTechnology" Role="RequestTechnology" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RequestTechnology">
+        <PropertyRef Name="Request" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

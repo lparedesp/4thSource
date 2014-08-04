@@ -1,0 +1,17 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a compilar
+       Ninguno
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles problemas de datos
+       Ninguno
+
+** Acciones del usuario
+     Crear
+       Restricción DEFAULT en [dbo].[Companies].[LastModified] (Restricción DEFAULT)
+       Restricción DEFAULT en [dbo].[Contacts].[Created] (Restricción DEFAULT)
+       Restricción DEFAULT en [dbo].[Contacts].[LastModified] (Restricción DEFAULT)
+
+** Acciones de compatibilidad

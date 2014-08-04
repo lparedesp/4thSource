@@ -1,0 +1,24 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a compilar
+       Ninguno
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles problemas de datos
+       Ninguno
+
+** Acciones del usuario
+     Crear
+       [dbo].[Companies] (Tabla)
+       [dbo].[Companies].[IX_Companies_Name] (Índice)
+       [dbo].[Contacts] (Tabla)
+       [dbo].[RequestCertifications] (Tabla)
+       [dbo].[Requests] (Tabla)
+       [dbo].[RequestTechnologies] (Tabla)
+       [dbo].[ResourceType] (Tabla)
+       [dbo].[Status] (Tabla)
+       [dbo].[FK_Contacts_Companies] (Clave externa)
+       [dbo].[FK_RequestTechnologies_ToRequest] (Clave externa)
+
+** Acciones de compatibilidad

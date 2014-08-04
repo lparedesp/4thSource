@@ -1,0 +1,5 @@
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\db4thStaffing\bin\Debug\db4thStaffing.dacpac
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\db4thStaffing\bin\Debug\db4thStaffing.dll
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\db4thStaffing\bin\Debug\db4thStaffing.pdb
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\db4thStaffing\obj\Debug\db4thStaffing.dll
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\db4thStaffing\obj\Debug\db4thStaffing.pdb

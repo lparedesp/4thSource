@@ -1,0 +1,10 @@
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\4thStaffingDataAccess\bin\Debug\4thStaffingRequest.dll.config
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\4thStaffingDataAccess\bin\Debug\4thStaffingRequest.dll
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\4thStaffingDataAccess\bin\Debug\4thStaffingRequest.pdb
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\4thStaffingDataAccess\bin\Debug\EntityFramework.dll
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\4thStaffingDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\4thStaffingDataAccess\bin\Debug\EntityFramework.xml
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\4thStaffingDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\4thStaffingDataAccess\obj\Debug\4thStaffingRequest.dll
+c:\users\user\documents\visual studio 2013\Projects\WebApplication1\4thStaffingDataAccess\obj\Debug\4thStaffingRequest.pdb
+C:\Users\User\Documents\Visual Studio 2013\Projects\WebApplication1\4thStaffingDataAccess\obj\Debug\4thStaffingDataAccess.csprojResolveAssemblyReference.cache

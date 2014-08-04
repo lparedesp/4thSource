@@ -1,0 +1,24 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a compilar
+       Ninguno
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles problemas de datos
+       Ninguno
+
+** Acciones del usuario
+     Modificar
+       [dbo].[Companies] (Tabla)
+       [dbo].[Contacts] (Tabla)
+     Crear
+       Restricción DEFAULT en [dbo].[Companies].[Created] (Restricción DEFAULT)
+       Restricción DEFAULT en [dbo].[Companies].[ModifiedBy] (Restricción DEFAULT)
+
+** Acciones de compatibilidad
+
+La columna Email de la tabla [dbo].[Contacts] debe cambiarse de NULL a NOT NULL. Si la tabla contiene datos, puede que no funcione el script ALTER. Para evitar este problema, debe agregar valores en todas las filas de esta columna, marcar la columna de modo que permita valores NULL o habilitar la generación de valores predeterminados inteligentes como opción de implementación.
+La columna FirstName de la tabla [dbo].[Contacts] debe cambiarse de NULL a NOT NULL. Si la tabla contiene datos, puede que no funcione el script ALTER. Para evitar este problema, debe agregar valores en todas las filas de esta columna, marcar la columna de modo que permita valores NULL o habilitar la generación de valores predeterminados inteligentes como opción de implementación.
+La columna LastName de la tabla [dbo].[Contacts] debe cambiarse de NULL a NOT NULL. Si la tabla contiene datos, puede que no funcione el script ALTER. Para evitar este problema, debe agregar valores en todas las filas de esta columna, marcar la columna de modo que permita valores NULL o habilitar la generación de valores predeterminados inteligentes como opción de implementación.
+

@@ -1,0 +1,192 @@
+﻿@model FourthSource.Staffing.Data.Request
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Request</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateNeeded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateNeeded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lenght)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lenght)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearsExp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearsExp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Travel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Travel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddtionalDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddtionalDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InternalComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InternalComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Version)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Version)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PositionType1.PositionType1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PositionType1.PositionType1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestType1.RequestType1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestType1.RequestType1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResourceType1.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResourceType1.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status1.Status1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status1.Status1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

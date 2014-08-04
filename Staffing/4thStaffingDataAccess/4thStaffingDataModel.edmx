@@ -1,0 +1,677 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FourthSource.Staffing.Data.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="ClientSince" Type="date" />
+          <Property Name="Logo" Type="image" />
+          <Property Name="Created" Type="datetime2" Precision="7" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Other" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company" Type="int" />
+          <Property Name="Created" Type="datetime2" Precision="7" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="PositionTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RequestCertifications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Request" Type="int" Nullable="false" />
+          <Property Name="Certification" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IssuedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Technology" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="RequestNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="date" />
+          <Property Name="RequestType" Type="int" />
+          <Property Name="DateNeeded" Type="date" />
+          <Property Name="CompanyNeeded" Type="int" />
+          <Property Name="ContactName" Type="int" />
+          <Property Name="PositionType" Type="int" />
+          <Property Name="Lenght" Type="int" />
+          <Property Name="ResourceType" Type="int" />
+          <Property Name="Position" Type="nvarchar" MaxLength="100" />
+          <Property Name="YearsExp" Type="smallint" />
+          <Property Name="Travel" Type="int" />
+          <Property Name="AddtionalDetails" Type="nvarchar" MaxLength="500" />
+          <Property Name="InternalComments" Type="nvarchar" MaxLength="500" />
+          <Property Name="EnglishLevel" Type="nchar" MaxLength="1" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Created" Type="datetime2" Precision="7" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="RequestTechnologies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Technology" Type="nvarchar" MaxLength="50" />
+          <Property Name="Requiered" Type="bit" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Months" Type="int" />
+          <Property Name="Request" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ResourceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_Contacts_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestCertifications_ToRequest">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="RequestCertifications" Type="Self.RequestCertifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestCertifications">
+              <PropertyRef Name="Request" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_ToCompanies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="CompanyNeeded" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_ToPositionTypes">
+          <End Role="PositionTypes" Type="Self.PositionTypes" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PositionTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="PositionType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_ToRequestType">
+          <End Role="RequestTypes" Type="Self.RequestTypes" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="RequestType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_ToResourceType">
+          <End Role="ResourceType" Type="Self.ResourceType" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="ResourceType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_ToStatus">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestTechnologies_ToRequest">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="RequestTechnologies" Type="Self.RequestTechnologies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestTechnologies">
+              <PropertyRef Name="Request" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FourthSourceStaffingDataModelStoreContainer">
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PositionTypes" EntityType="Self.PositionTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestCertifications" EntityType="Self.RequestCertifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestTechnologies" EntityType="Self.RequestTechnologies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestTypes" EntityType="Self.RequestTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResourceType" EntityType="Self.ResourceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Contacts_Companies" Association="Self.FK_Contacts_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestCertifications_ToRequest" Association="Self.FK_RequestCertifications_ToRequest">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="RequestCertifications" EntitySet="RequestCertifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_ToCompanies" Association="Self.FK_Requests_ToCompanies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_ToPositionTypes" Association="Self.FK_Requests_ToPositionTypes">
+            <End Role="PositionTypes" EntitySet="PositionTypes" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_ToRequestType" Association="Self.FK_Requests_ToRequestType">
+            <End Role="RequestTypes" EntitySet="RequestTypes" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_ToResourceType" Association="Self.FK_Requests_ToResourceType">
+            <End Role="ResourceType" EntitySet="ResourceType" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_ToStatus" Association="Self.FK_Requests_ToStatus">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestTechnologies_ToRequest" Association="Self.FK_RequestTechnologies_ToRequest">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="RequestTechnologies" EntitySet="RequestTechnologies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FourthSource.Staffing.Data.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="db4thStaffingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="FourthSource.Staffing.Data.Model.Company" />
+          <EntitySet Name="Contacts" EntityType="FourthSource.Staffing.Data.Model.Contact" />
+          <EntitySet Name="PositionTypes" EntityType="FourthSource.Staffing.Data.Model.PositionType" />
+          <EntitySet Name="RequestCertifications" EntityType="FourthSource.Staffing.Data.Model.RequestCertification" />
+          <EntitySet Name="Requests" EntityType="FourthSource.Staffing.Data.Model.Request" />
+          <EntitySet Name="RequestTechnologies" EntityType="FourthSource.Staffing.Data.Model.RequestTechnology" />
+          <EntitySet Name="RequestTypes" EntityType="FourthSource.Staffing.Data.Model.RequestType" />
+          <EntitySet Name="ResourceTypes" EntityType="FourthSource.Staffing.Data.Model.ResourceType" />
+          <EntitySet Name="Status" EntityType="FourthSource.Staffing.Data.Model.Status" />
+          <AssociationSet Name="FK_Contacts_Companies" Association="FourthSource.Staffing.Data.Model.FK_Contacts_Companies">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_ToCompanies" Association="FourthSource.Staffing.Data.Model.FK_Requests_ToCompanies">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_ToPositionTypes" Association="FourthSource.Staffing.Data.Model.FK_Requests_ToPositionTypes">
+            <End Role="PositionType" EntitySet="PositionTypes" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestCertifications_ToRequest" Association="FourthSource.Staffing.Data.Model.FK_RequestCertifications_ToRequest">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="RequestCertification" EntitySet="RequestCertifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_ToRequestType" Association="FourthSource.Staffing.Data.Model.FK_Requests_ToRequestType">
+            <End Role="RequestType" EntitySet="RequestTypes" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_ToResourceType" Association="FourthSource.Staffing.Data.Model.FK_Requests_ToResourceType">
+            <End Role="ResourceType" EntitySet="ResourceTypes" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_ToStatus" Association="FourthSource.Staffing.Data.Model.FK_Requests_ToStatus">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestTechnologies_ToRequest" Association="FourthSource.Staffing.Data.Model.FK_RequestTechnologies_ToRequest">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="RequestTechnology" EntitySet="RequestTechnologies" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ClientSince" Type="DateTime" Precision="0" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Created" Type="DateTime" Precision="7" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="LastModified" Type="DateTime" Precision="7" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="Version" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Contacts" Relationship="FourthSource.Staffing.Data.Model.FK_Contacts_Companies" FromRole="Company" ToRole="Contact" />
+          <NavigationProperty Name="Requests" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToCompanies" FromRole="Company" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Other" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Precision="7" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="LastModified" Type="DateTime" Precision="7" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="Version" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Company1" Relationship="FourthSource.Staffing.Data.Model.FK_Contacts_Companies" FromRole="Contact" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="PositionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToPositionTypes" FromRole="PositionType" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="RequestCertification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Request" Type="Int32" Nullable="false" />
+          <Property Name="Certification" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IssuedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Technology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Request1" Relationship="FourthSource.Staffing.Data.Model.FK_RequestCertifications_ToRequest" FromRole="RequestCertification" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RequestNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="RequestType" Type="Int32" />
+          <Property Name="DateNeeded" Type="DateTime" Precision="0" />
+          <Property Name="CompanyNeeded" Type="Int32" />
+          <Property Name="ContactName" Type="Int32" />
+          <Property Name="PositionType" Type="Int32" />
+          <Property Name="Lenght" Type="Int32" />
+          <Property Name="ResourceType" Type="Int32" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="YearsExp" Type="Int16" />
+          <Property Name="Travel" Type="Int32" />
+          <Property Name="AddtionalDetails" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="InternalComments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EnglishLevel" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Created" Type="DateTime" Precision="7" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="LastModified" Type="DateTime" Precision="7" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="Version" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Company" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToCompanies" FromRole="Request" ToRole="Company" />
+          <NavigationProperty Name="PositionType1" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToPositionTypes" FromRole="Request" ToRole="PositionType" />
+          <NavigationProperty Name="RequestCertifications" Relationship="FourthSource.Staffing.Data.Model.FK_RequestCertifications_ToRequest" FromRole="Request" ToRole="RequestCertification" />
+          <NavigationProperty Name="RequestType1" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToRequestType" FromRole="Request" ToRole="RequestType" />
+          <NavigationProperty Name="ResourceType1" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToResourceType" FromRole="Request" ToRole="ResourceType" />
+          <NavigationProperty Name="Status1" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToStatus" FromRole="Request" ToRole="Status" />
+          <NavigationProperty Name="RequestTechnologies" Relationship="FourthSource.Staffing.Data.Model.FK_RequestTechnologies_ToRequest" FromRole="Request" ToRole="RequestTechnology" />
+        </EntityType>
+        <EntityType Name="RequestTechnology">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Technology" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Requiered" Type="Boolean" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Months" Type="Int32" />
+          <Property Name="Request" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Request1" Relationship="FourthSource.Staffing.Data.Model.FK_RequestTechnologies_ToRequest" FromRole="RequestTechnology" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="RequestType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestType1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToRequestType" FromRole="RequestType" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="ResourceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToResourceType" FromRole="ResourceType" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="FourthSource.Staffing.Data.Model.FK_Requests_ToStatus" FromRole="Status" ToRole="Request" />
+        </EntityType>
+        <Association Name="FK_Contacts_Companies">
+          <End Type="FourthSource.Staffing.Data.Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="FourthSource.Staffing.Data.Model.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_ToCompanies">
+          <End Type="FourthSource.Staffing.Data.Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="CompanyNeeded" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_ToPositionTypes">
+          <End Type="FourthSource.Staffing.Data.Model.PositionType" Role="PositionType" Multiplicity="0..1" />
+          <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PositionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="PositionType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestCertifications_ToRequest">
+          <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="1" />
+          <End Type="FourthSource.Staffing.Data.Model.RequestCertification" Role="RequestCertification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestCertification">
+              <PropertyRef Name="Request" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_ToRequestType">
+          <End Type="FourthSource.Staffing.Data.Model.RequestType" Role="RequestType" Multiplicity="0..1" />
+          <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="RequestType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_ToResourceType">
+          <End Type="FourthSource.Staffing.Data.Model.ResourceType" Role="ResourceType" Multiplicity="0..1" />
+          <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ResourceType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_ToStatus">
+          <End Type="FourthSource.Staffing.Data.Model.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestTechnologies_ToRequest">
+          <End Type="FourthSource.Staffing.Data.Model.Request" Role="Request" Multiplicity="1" />
+          <End Type="FourthSource.Staffing.Data.Model.RequestTechnology" Role="RequestTechnology" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestTechnology">
+              <PropertyRef Name="Request" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FourthSourceStaffingDataModelStoreContainer" CdmEntityContainer="db4thStaffingEntities">
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="FourthSource.Staffing.Data.Model.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="ClientSince" ColumnName="ClientSince" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="FourthSource.Staffing.Data.Model.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PositionTypes">
+            <EntityTypeMapping TypeName="FourthSource.Staffing.Data.Model.PositionType">
+              <MappingFragment StoreEntitySet="PositionTypes">
+                <ScalarProperty Name="PositionType1" ColumnName="PositionType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestCertifications">
+            <EntityTypeMapping TypeName="FourthSource.Staffing.Data.Model.RequestCertification">
+              <MappingFragment StoreEntitySet="RequestCertifications">
+                <ScalarProperty Name="Technology" ColumnName="Technology" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="Certification" ColumnName="Certification" />
+                <ScalarProperty Name="Request" ColumnName="Request" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="FourthSource.Staffing.Data.Model.Request">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EnglishLevel" ColumnName="EnglishLevel" />
+                <ScalarProperty Name="InternalComments" ColumnName="InternalComments" />
+                <ScalarProperty Name="AddtionalDetails" ColumnName="AddtionalDetails" />
+                <ScalarProperty Name="Travel" ColumnName="Travel" />
+                <ScalarProperty Name="YearsExp" ColumnName="YearsExp" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="ResourceType" ColumnName="ResourceType" />
+                <ScalarProperty Name="Lenght" ColumnName="Lenght" />
+                <ScalarProperty Name="PositionType" ColumnName="PositionType" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="CompanyNeeded" ColumnName="CompanyNeeded" />
+                <ScalarProperty Name="DateNeeded" ColumnName="DateNeeded" />
+                <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="RequestNumber" ColumnName="RequestNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestTechnologies">
+            <EntityTypeMapping TypeName="FourthSource.Staffing.Data.Model.RequestTechnology">
+              <MappingFragment StoreEntitySet="RequestTechnologies">
+                <ScalarProperty Name="Request" ColumnName="Request" />
+                <ScalarProperty Name="Months" ColumnName="Months" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Requiered" ColumnName="Requiered" />
+                <ScalarProperty Name="Technology" ColumnName="Technology" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestTypes">
+            <EntityTypeMapping TypeName="FourthSource.Staffing.Data.Model.RequestType">
+              <MappingFragment StoreEntitySet="RequestTypes">
+                <ScalarProperty Name="RequestType1" ColumnName="RequestType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResourceTypes">
+            <EntityTypeMapping TypeName="FourthSource.Staffing.Data.Model.ResourceType">
+              <MappingFragment StoreEntitySet="ResourceType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="FourthSource.Staffing.Data.Model.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status1" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

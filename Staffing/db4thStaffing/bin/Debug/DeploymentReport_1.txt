@@ -1,0 +1,27 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a compilar
+       Ninguno
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles problemas de datos
+       El tipo de la columna EnglishLevel de la tabla [dbo].[Requests] es actualmente  NCHAR (10) NULL pero se está cambiando a
+          NCHAR (1) NULL. Puede que se pierdan datos.
+
+** Acciones del usuario
+     Cambiar nombre
+       [dbo].[RequestCertifications].[Request] (Columna)
+       [dbo].[Requests].[EnglishLevel] (Columna)
+     Modificar
+       [dbo].[Requests] (Tabla)
+     Crear
+       [dbo].[FK_RequestCertifications_ToRequest] (Clave externa)
+       [dbo].[FK_Requests_ToCompanies] (Clave externa)
+       [dbo].[FK_Requests_ToResourceType] (Clave externa)
+       [dbo].[FK_Requests_ToStatus] (Clave externa)
+
+** Acciones de compatibilidad
+
+El tipo de la columna EnglishLevel de la tabla [dbo].[Requests] es actualmente  NCHAR (10) NULL pero se está cambiando a  NCHAR (1) NULL. Puede que se pierdan datos.
+

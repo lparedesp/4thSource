@@ -1,0 +1,153 @@
+﻿@model IEnumerable<FourthSource.Staffing.Data.Request>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateNeeded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lenght)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearsExp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Travel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddtionalDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InternalComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnglishLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastModified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Version)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PositionType1.PositionType1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestType1.RequestType1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResourceType1.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status1.Status1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateNeeded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lenght)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearsExp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Travel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddtionalDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InternalComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnglishLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastModified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Version)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PositionType1.PositionType1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestType1.RequestType1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResourceType1.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status1.Status1)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

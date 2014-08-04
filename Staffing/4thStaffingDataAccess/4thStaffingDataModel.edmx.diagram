@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5eccf0176d29462f8d6b76b14a4f3293" Name="Diagram1" ZoomLevel="57">
+        <EntityTypeShape EntityType="FourthSource.Staffing.Data.Model.Company" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="FourthSource.Staffing.Data.Model.Contact" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="FourthSource.Staffing.Data.Model.PositionType" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FourthSource.Staffing.Data.Model.RequestCertification" Width="1.5" PointX="8.25" PointY="5.125" />
+        <EntityTypeShape EntityType="FourthSource.Staffing.Data.Model.Request" Width="1.5" PointX="6" PointY="4.375" />
+        <EntityTypeShape EntityType="FourthSource.Staffing.Data.Model.RequestTechnology" Width="1.5" PointX="8.25" PointY="8" />
+        <EntityTypeShape EntityType="FourthSource.Staffing.Data.Model.RequestType" Width="1.5" PointX="3.75" PointY="11.125" />
+        <EntityTypeShape EntityType="FourthSource.Staffing.Data.Model.ResourceType" Width="1.5" PointX="3.75" PointY="3.25" />
+        <EntityTypeShape EntityType="FourthSource.Staffing.Data.Model.Status" Width="1.5" PointX="3.75" PointY="13.5" />
+        <AssociationConnector Association="FourthSource.Staffing.Data.Model.FK_Contacts_Companies" />
+        <AssociationConnector Association="FourthSource.Staffing.Data.Model.FK_Requests_ToCompanies" />
+        <AssociationConnector Association="FourthSource.Staffing.Data.Model.FK_Requests_ToPositionTypes" />
+        <AssociationConnector Association="FourthSource.Staffing.Data.Model.FK_RequestCertifications_ToRequest" />
+        <AssociationConnector Association="FourthSource.Staffing.Data.Model.FK_Requests_ToRequestType" />
+        <AssociationConnector Association="FourthSource.Staffing.Data.Model.FK_Requests_ToResourceType" />
+        <AssociationConnector Association="FourthSource.Staffing.Data.Model.FK_Requests_ToStatus" />
+        <AssociationConnector Association="FourthSource.Staffing.Data.Model.FK_RequestTechnologies_ToRequest" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
