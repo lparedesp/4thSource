@@ -9,6 +9,12 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Search", "Requests"))
+    {
+        <div class="form-group has-feedback">
+            <input type="text" name="SearchText" placeholder="Buscar Request" class="form-control" />
+        </div>
+    }
 </p>
 
 <div class="container" id="main">
@@ -22,7 +28,7 @@
                     <h4>
                         <img src="@Url.Action("GetLogo", "Companies", new { item.Company.Id })" alt="Logo" class="img-thumbnail" style="max-height:60px;" />
                         @Html.DisplayFor(modelItem => item.RequestNumber)
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "pull-right" })
+                        @Html.ActionLink("Details", "Details", "Requests", new { id = item.Id }, new { @class = "pull-right" })
                     </h4>
                 </div>
                 <div class="panel panel-body">
@@ -44,147 +50,3 @@
     }
 }
 </div>
-
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RequestNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequestType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateNeeded)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PositionType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lenght)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Position)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YearsExp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Travel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AddtionalDetails)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InternalComments)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastModified)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Version)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EnglishLevel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Company.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResourceType1.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status1.Status1)
-        </th>
-        <th></th>
-    </tr>
-    @if(Model != null)
-    {
-        foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RequestNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RequestType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateNeeded)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ContactName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PositionType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lenght)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.YearsExp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Travel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AddtionalDetails)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InternalComments)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Created)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedBy)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastModified)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ModifiedBy)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Version)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EnglishLevel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ResourceType1.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status1.Status1)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-                </td>
-            </tr>
-        }
-    }
-</table>*@

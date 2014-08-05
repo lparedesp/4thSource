@@ -22,6 +22,16 @@ namespace WebApplication1.Controllers
             return View(await requests.ToListAsync());
         }
 
+        // GET: /Requests/
+        public async Task<ActionResult> Search(string SearchText)
+        {
+            var requests = from d in db.Requests
+                           where d.Company.Name == SearchText
+                           select d;
+            return View("Index",await requests.ToListAsync());
+        }
+
+
         // GET: /Requests/Details/5
         public async Task<ActionResult> Details(int? id)
         {

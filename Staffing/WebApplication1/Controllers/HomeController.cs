@@ -19,7 +19,6 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
             var requests = from d in db.Requests
-                           where d.EnglishLevel == "B"
                            select d;
 
             return View(requests);
